@@ -9,5 +9,7 @@ public class TurtleWorld
         turtle.setPenColor(Color.RED);
         turtle.penDown();
         turtle.forward(50);
+        turtle.turn(100);
+        turtle.back(50);
     }
 }
