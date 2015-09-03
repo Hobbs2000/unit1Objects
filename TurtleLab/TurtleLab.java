@@ -4,7 +4,7 @@ public class TurtleLab
 {
     public static void main(String[] args)
     {
-    World world = new World();
+    World world = new World(1920,1080);
     
     Turtle t1 = new Turtle(world);
     Turtle t2 = new Turtle(world);
@@ -16,40 +16,95 @@ public class TurtleLab
     boolean isT1Down = true;
     t2.setPenDown(false);
     boolean isT2Down = false;
-    
+    int turn = 0;
+    int turn2 = 0;
+    int times2 = 0;
     for(int go = 0 ;; go++)
     {
         if (go % 2 == 0)
         {
-            //Even
-            if (isT1Down == true)
+            if (times2 <= 50)
             {
-                t1.setPenDown(false);
-                isT1Down = false;
+                //Even
+                if (isT1Down == true)
+                {
+                    t1.setPenDown(false);
+                    isT1Down = false;
+                }
+                else 
+                {
+                    t1.setPenDown(true);
+                    isT1Down = true;
+                }
+                t1.forward(10);
+                t1.turn(turn);
+                turn ++;
+                if (turn > 360)
+                {
+                    turn -= 360;
+                    t1.forward(50);
+                }
             }
-            else 
+        
+            else
             {
-                t1.setPenDown(true);
-                isT1Down = true;
+                if (isT1Down == true)
+                {
+                    t1.setPenDown(false);
+                    isT1Down = false;
+                }
+                else 
+                {
+                    t1.setPenDown(true);
+                    isT1Down = true;
+                }
+                t1.forward(300);
+                t1.turn(15);
+                t1.backward(300);
             }
-            t1.forward(50);
-            t1.turn(15);
         }
         else
         {
             //Odd
-            if (isT2Down == true)
+            if (times2 <= 50)
             {
-                t2.setPenDown(false);
-                isT2Down = false;
+                if (isT2Down == true)
+                {
+                    t2.setPenDown(false);
+                    isT2Down = false;
+                }
+                else
+                {
+                    t2.setPenDown(true);
+                    isT2Down = true;
+                }
+                t2.forward(10);
+                t2.turn(turn2);
+                turn2 --;
+                if (turn2 < -359)
+                {
+                    times2 ++;
+                    turn2 += 360;
+                    t2.forward(50);
+                }
             }
             else
             {
-                t2.setPenDown(true);
-                isT2Down = true;
+                if (isT2Down == true)
+                {
+                    t2.setPenDown(false);
+                    isT2Down = false;
+                }
+                else
+                {
+                    t2.setPenDown(true);
+                    isT2Down = true;
+                }
+                t2.forward(300);
+                t2.turn(-15);
+                t2.backward(300);
+
             }
-            t2.forward(50);
-            t2.turn(15);
             
         }
     }
